@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
+  get "hashtags",            to: "hashtags#index",     as: :hashtags
+  devise_for :users , controllers: {
+        registrations: 'users/registrations'
+      }
+  resources :profiles do
+     resources :tweets
+     resources :followers
+  end
+
+  get '/feed' => 'feed#userfeed'
+  root 'feed#userfeed'
+
+  get "/search/:phrase" => "profiles#search"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,10 @@
+<li>
+<%= link_to tweet.user.profile.name, profile_path(tweet.user.profile) %>: 
+<%= auto_link_usernames(linkify_hashtags(tweet.body)) %>
+<% if tweet.user == current_user %>
+     <%= link_to "edit", edit_profile_tweet_path(current_user.profile, tweet) %>
+     <%= link_to "delete", profile_tweet_path(current_user.profile, tweet), method: :delete %>
+<% end %>
+
+<br><br>
+</li>

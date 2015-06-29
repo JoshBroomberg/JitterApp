@@ -1,0 +1,37 @@
+
+<%= search_form_for @prof do |f| %>
+
+  <%= f.label "Search by display name" %><br>
+  <%= f.search_field :name_cont %><br>
+
+  <%= f.submit %><br><br>
+  
+  <% end %>
+  <%= search_form_for @prof2, url: "/profiles" do |f| %>
+
+  <%= f.label "Search by username" %><br>
+  <%= f.search_field :username_cont %><br>
+
+  <%= f.submit %><br><br>
+
+<% end %>
+
+<h2>Results:</h2>
+
+<% if @profiles.count==0 &&  @profiles2.count ==0%>
+<h3>No results</h3>
+<% end %>
+
+<% if !@which %>
+<% if @profiles.count==0%>
+<h3>No results</h3>
+<% end %>
+<%= render @profiles %>
+<% else %>
+<% if @profiles2.count ==0%>
+<h3>No results</h3>
+<% end %>
+<% @profiles2.each do |name|%>
+ <%=name%> <%= auto_link_usernames("@"+Profile.where(name: name).first.user.username) %>
+<% end %>
+<% end %>

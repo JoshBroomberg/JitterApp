@@ -1,0 +1,92 @@
+<%= form_for [@user.profile, @tweet] do |f| %>
+
+<%= f.label :body %>(Enter a tweet)<br>
+<%= f.text_area :body, value: @tweet.body, id: "listen" %><br>
+
+<%= f.submit @message%>
+
+<div id = "big">
+
+</div>
+
+<% end %>
+
+<script>
+var str1 = "";
+var user =  "";
+var track = "";
+var foundAt = false;
+$( "#listen" ).keypress(function() {
+  str1 = String.fromCharCode(event.charCode);
+  console.log(user);
+  if (track == "")
+  {
+  	foundAt = false;
+  	user = "";
+  }
+  if (str1 == "@")
+  {
+  	foundAt = true;
+  	user = "";
+  	track = "@";
+  }
+  if (foundAt&&str1!="@")
+  {
+    user +=String.fromCharCode(event.charCode);
+    track +=String.fromCharCode(event.charCode);
+    loadXMLDoc()
+  }
+  //console.log(user);
+  
+});
+
+$( "#listen" ).keyup(function() {
+if (event.keyCode==8)
+  {
+  	user = user.slice(0, user.length-1)
+  	if (user.length>0)
+  	{
+  	loadXMLDoc()
+    }
+    else
+    {
+    	track = ""
+    	var bigDiv=document.getElementById("big");
+    	bigDiv.innerHTML = ""
+    }
+
+  }
+  console.log(user)
+
+	});
+
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    	var bigDiv=document.getElementById("big");
+    bigDiv.innerHTML = ""
+    var div=document.createElement('div');
+    
+    div.appendChild(document.createTextNode("You could/must be typing\n"));
+    div.appendChild(document.createTextNode(xmlhttp.responseText));
+
+    bigDiv.appendChild(div);
+
+    }
+  }
+xmlhttp.open("GET","http://localhost:3000/search/"+user,true);
+xmlhttp.send();
+}
+</script>

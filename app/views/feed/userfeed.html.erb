@@ -1,0 +1,24 @@
+
+
+<div id="live">
+<ul>
+	<%=render @tweets %>
+</ul>
+</div>
+
+<script> 
+
+function loadlink(){
+    $('#live').load(document.URL +  ' #live', function () {
+         
+    });
+}
+loadlink(); // This will run on page load
+setInterval(function(){
+    loadlink() // this will run every second
+}, 1000);
+
+</script>
+
+
+

@@ -44,5 +44,13 @@ group :development, :test do
 
   gem "devise"
 
+  gem 'ransack'
+
+  gem 'simple_hashtag'
+
+  gem "faker"
+
+  gem "populator"
+
 end
 

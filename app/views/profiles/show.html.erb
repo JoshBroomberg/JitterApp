@@ -1,0 +1,17 @@
+<h2><%= @profile.name %></h2>
+<h5><strong>Bio:</strong> <%= @profile.description %> </h5>
+
+<% if current_user != @profile.user %>
+	<% if Follower.where(user_id: current_user.id, follower_id: @profile.id).count == 0 %>
+        <% @user = current_user %>
+       <%= render "followers/follow" %>
+    <% else %>
+       <%= link_to "unfollow", profile_follower_path(@profile, Follower.where(user_id: current_user.id, follower_id: @profile.id)[0]), method: :delete %>
+    <% end %>
+<% end %>
+
+<h4><%= @profile.name %>'s tweets:</h4>
+<ul>
+<%= render @tweets %>
+</ul>
+
