@@ -52,5 +52,7 @@ group :development, :test do
 
   gem "populator"
 
+  gem "pry-rails"
+
 end
 

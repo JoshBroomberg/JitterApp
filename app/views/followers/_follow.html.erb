@@ -1,7 +1,0 @@
-<%= form_for [@user.profile, @user.followers.build] do |f| %>
-
-<input type="hidden" name = "follower[follower_id]" value = <%= @profile.id %> />
-
-<%= f.submit "follow"%>
-
-<% end %>

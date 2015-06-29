@@ -8,7 +8,7 @@
 
 Profile.delete_all
 User.delete_all
-Follower.delete_all
+Follow.delete_all
 Tweet.delete_all
 
 user = User.new
@@ -26,7 +26,7 @@ user2.save!
 Profile.create!(name: "JoshuaMB", description: "This is JMB's decsription", user: User.first)
 Profile.create!(name: "SammyGL", description: "This is SGL's description", user: User.second)
 
-Follower.create!(user: User.first, follower_id: User.second.id)
+Follow.create!(follower_id: User.first.id, followee_id: User.second.id)
 
 Tweet.create!(user: User.first, body: "OMG I <3 #CapeTown with @sgl" )
 Tweet.create!(user: User.first, body: "Hashtag #YoMama" )

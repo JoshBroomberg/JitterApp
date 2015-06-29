@@ -6,11 +6,13 @@ Rails.application.routes.draw do
       }
   resources :profiles do
      resources :tweets
-     resources :followers
   end
 
   get '/feed' => 'feed#userfeed'
   root 'feed#userfeed'
+
+  post "/follow/:profile_id/f" => "follows#create"
+  post "/follow/:profile_id/u" => "follows#destroy"
 
   get "/search/:phrase" => "profiles#search"
 

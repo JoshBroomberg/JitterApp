@@ -1,0 +1,10 @@
+<%= form_for [@user.profile, @user.followers.build], url: "/follow/"+@profile.user.id.to_s+"/"+@fu do |f| %>
+  <% text = "" %>
+<% if @fu == "f" %>
+   <% text = "follow" %>
+<% else %>
+   <% text = "unfollow" %>
+<% end %>
+<%= f.submit text%>
+
+<% end %>

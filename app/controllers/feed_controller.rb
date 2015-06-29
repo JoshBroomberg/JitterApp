@@ -1,9 +1,9 @@
 class FeedController < ApplicationController
  def userfeed
  	@tweets = current_user.tweets
- 	@usersToDisplay = current_user.followers
+ 	@usersToDisplay = current_user.followees
  	@usersToDisplay.each do |user|
-	      @tweets += User.find(user.follower_id).tweets
+	      @tweets += user.tweets
 	end
 
 	 #@tweets = @tweets.order('created_at desc')

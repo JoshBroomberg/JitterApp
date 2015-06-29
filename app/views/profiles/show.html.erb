@@ -2,11 +2,16 @@
 <h5><strong>Bio:</strong> <%= @profile.description %> </h5>
 
 <% if current_user != @profile.user %>
-	<% if Follower.where(user_id: current_user.id, follower_id: @profile.id).count == 0 %>
+	<% if !current_user.followees.to_a.include?(@profile.user)  %>
         <% @user = current_user %>
-       <%= render "followers/follow" %>
-    <% else %>
-       <%= link_to "unfollow", profile_follower_path(@profile, Follower.where(user_id: current_user.id, follower_id: @profile.id)[0]), method: :delete %>
+        <% @fu = "f" %>
+        <%= render "follows/follow" %>
+     <% else %>
+        <% @user = current_user %>
+        <% @fu = "u" %>
+        <%= render "follows/follow" %>
+       <%# link_to "unfollow", profile_follow_path(@profile, Follow.where(followee_id: current_user.id, follower_id: @profile.user.id).first), method: :delete %>
+       
     <% end %>
 <% end %>
 
