@@ -56,5 +56,7 @@ group :development, :test do
 
   gem "omniauth-facebook"
 
+  gem 'simple_form'
+
 end
 

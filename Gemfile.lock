@@ -163,6 +163,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_form (3.1.0)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     simple_hashtag (0.1.9)
       rails (> 3.2.0)
     slop (3.6.0)
@@ -209,6 +212,7 @@ DEPENDENCIES
   ransack
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simple_form
   simple_hashtag
   spring
   sqlite3
