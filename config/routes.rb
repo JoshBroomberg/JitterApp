@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
   get "hashtags",            to: "hashtags#index",     as: :hashtags
+  
   devise_for :users , controllers: {
-        registrations: 'users/registrations'
+        registrations: 'users/registrations', 
+        omniauth_callbacks: "users/omniauth_callbacks"
+
       }
   resources :profiles do
      resources :tweets

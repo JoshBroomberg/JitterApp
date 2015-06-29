@@ -54,5 +54,7 @@ group :development, :test do
 
   gem "pry-rails"
 
+  gem "omniauth-facebook"
+
 end
 
